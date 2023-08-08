@@ -1,0 +1,29 @@
+<div class = "container-fluid">
+  <div class = "table-responsive rounded">
+    <table class="table table-bordered table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Deletar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td scope="row"><%= user.id%></td>
+            <td><%= user.name%></td>
+            <td><%= user.email%></td>
+            <td><%= link_to "Edit", edit_user_path(user), class: "btn btn-dark" %></td>
+            <td>
+                <%= button_to 'Delete', user, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn btn-danger" %></td>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+  </div>
+  <%= link_to "New User", new_user_path, class: "btn btn-light" %>
+  <%= link_to "Admin page", admin_path, class: "btn btn-dark" %>
+</div>
