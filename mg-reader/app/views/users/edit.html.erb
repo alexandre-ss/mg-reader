@@ -1,6 +1,29 @@
-<%= form_with model: @user do |form|%>
-  <%= form.text_field :name%>
-  <%= form.email_field :email %>
-  <%= form.hidden_field :password%>
-  <%= form.submit "Save user"%>
-<% end %>
+<%= stylesheet_link_tag 'user' %> 
+<div class="form-body">
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3><%= @user.name%></h3>
+          <%= form_with model: @user do |form|%>
+            <div class="col-md-12">
+              <%= form.text_field :name, class: "form-control", placeholder: "Full Name"%>
+            </div>
+
+            <div class="col-md-12">
+              <%= form.email_field :email, placeholder: "E-mail Address", class: "form-control" %>
+            </div>
+
+            <div class="col-md-12">
+              <%= form.hidden_field :password%>
+            </div> 
+
+            <div class="form-button mt-3">
+              <%= form.submit 'Save user', class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

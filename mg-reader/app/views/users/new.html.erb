@@ -1,26 +1,29 @@
-<div class = 'container row'>
-  <div class = 'col-6'></div>
-  <div class = 'col-4'>
-    <%= form_with model: @user, method: :post do |form|%>
-      <div class = 'form-group'>
-        <%= form.label :name %>
-        <%= form.text_field :name, class: "form-control" %>
-      </div>
+<%= stylesheet_link_tag 'user' %> 
+<div class="form-body">
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Register new user</h3>
+          <%= form_with model: @user, method: :post do |form|%>
+            <div class="col-md-12">
+              <%= form.text_field :name, class: "form-control", placeholder: "Full Name", required: true%>
+            </div>
 
-      <div class = 'form-group'>
-        <%= form.label :password %>
-        <%= form.password_field :password, class: "form-control" %>
-      </div>
+            <div class="col-md-12">
+              <%= form.email_field :email, placeholder: "E-mail Address", class: "form-control",required: true %>
+            </div>
 
-      <div class = 'form-group'>
-        <%= form.label :email%>
-        <%= form.email_field :email, class: "form-control" %>
-      </div>
+            <div class="col-md-12">
+              <%= form.password_field :password, class: "form-control", placeholder: "Password", required: true %>
+            </div> 
 
-      <div class = 'pt-2'>
-        <%= form.submit 'Create new user', class: "btn btn-primary" %>
+            <div class="form-button mt-3">
+              <%= form.submit 'Create new user', class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
-  <div class = 'col-6'></div>
 </div>
