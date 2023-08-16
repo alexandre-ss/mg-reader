@@ -15,7 +15,11 @@ class UsersController < ApplicationController
     @user = User.new(permitted_params)
     if @user.save
       flash[:success] = "Object successfully created"
-      redirect_to users_path
+      if current_user && current_user.is_admin?
+        redirect_to users_path
+      else
+        redirect_to sign_in_path
+      end
     else
       flash[:error] = "Something went wrong"
       render 'new'
@@ -42,7 +46,7 @@ class UsersController < ApplicationController
   # GET /user/:id
 
   def show
-    @user = User.find(:id)
+    @user = User.find(params[:id])
   end
   
   

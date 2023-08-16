@@ -9,9 +9,10 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="<%= root_path%>">Homepage</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= admin_path%>">Admin</a>
-        </li>
+        <% if user_signed_in? && current_user.is_admin?  %>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= admin_path%>">Admin</a>
+          </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Users
@@ -20,10 +21,24 @@
             <li><a class="dropdown-item" href="<%= users_path%>">All users</a></li>
             <li><a class="dropdown-item" href="<%= new_user_path%>">New user</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="<%= user_path("current_user_here")%>">Your profile (WIP)</a></li>
           </ul>
         </li>
+        <% end %>
       </ul>
     </div>
+    <% if user_signed_in? %>
+      <li class="nav-item dropdown" style = "list-style-type: none;">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= current_user.name %>
+        </a>
+        <ul class="dropdown-menu mr-4">
+          <li><a class="dropdown-item" href="<%= user_path(current_user)%>">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="<%= sign_out_path%>">Logout</a></li>
+        </ul>
+      </li>
+    <% else %>
+      <a class="nav-link" href="<%= sign_in_path%>">Login</a>
+    <% end %>
   </div>
 </nav>
